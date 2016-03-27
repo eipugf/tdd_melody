@@ -5,6 +5,8 @@ package eugene.game;
  * @author Eugene
  */
 public class Game {
+    private boolean flagStarted;
+    
     public Game(){
     
     }
@@ -14,10 +16,10 @@ public class Game {
     }
     
     public void stop(){
-    
+        this.flagStarted = false;
     }
     
     public boolean isStarted(){
-        return true;
+        return this.flagStarted;
     }
 }
