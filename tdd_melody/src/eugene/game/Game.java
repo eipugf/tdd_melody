@@ -13,6 +13,10 @@ public class Game {
     
     }
     
+    public void stop(){
+    
+    }
+    
     public boolean isStarted(){
         return true;
     }
