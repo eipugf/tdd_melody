@@ -26,7 +26,7 @@ public class TestGame {
     public void testStarGame(){
         Game game = new Game();
         game.start();
-        assertEquals(game.isStarted()==true);
+        assertEquals(game.isStarted(), true);
     }
     
 }
