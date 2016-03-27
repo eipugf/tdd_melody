@@ -85,6 +85,7 @@ public class MainFormController implements Initializable {
         game.playSound();
     }
     
-    
-    
+    private void updateText(){
+        this.text.setText(game.getStringResult());
+    }
 }
