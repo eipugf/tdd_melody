@@ -18,7 +18,8 @@ public class Game {
     private ArrayList<File> soundList;
     private Thread soundThread;
     private int[] payersCounts = new int[]{0,0,0};
-    private String nameActiveMelody = "Увертюра";
+    private String nameActiveMelody ;
+    private int activeIndex = 0;
     private int countStaps = 0;
     private int activePlayer = 0;
 
@@ -50,7 +51,7 @@ public class Game {
 
     public void playSound() {
         try {
-            File audio = this.soundList.get(random.nextInt(this.soundList.size()));
+            File audio = this.soundList.get(this.activeIndex);
             this.soundThread = new SoudThread(audio);
             this.soundThread.start();
         } catch (Exception ex) {
@@ -79,6 +80,8 @@ public class Game {
     }
     
     public String[] getVariants(){
+        this.activeIndex = random.nextInt(this.soundList.size());
+        this.nameActiveMelody = this.soundList.get(activeIndex).getName();
         String[] variants = new String[4];
         int idxRight = random.nextInt(4);
         variants[idxRight] = this.nameActiveMelody;
