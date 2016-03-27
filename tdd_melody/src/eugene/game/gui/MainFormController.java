@@ -40,10 +40,10 @@ public class MainFormController implements Initializable {
     private Game game = new Game();
     
     private void setVariants(String[] variants){
-        this.buttonVar1.setText(variants[0]);
-        this.buttonVar2.setText(variants[1]);
-        this.buttonVar3.setText(variants[2]);
-        this.buttonVar4.setText(variants[3]);
+        this.buttonVar1.setText(variants[0].replace(".wav",""));
+        this.buttonVar2.setText(variants[1].replace(".wav",""));
+        this.buttonVar3.setText(variants[2].replace(".wav",""));
+        this.buttonVar4.setText(variants[3].replace(".wav",""));
     }
     
     
@@ -61,10 +61,13 @@ public class MainFormController implements Initializable {
         this.buttonVar3.setToggleGroup(group);
         this.buttonVar4.setToggleGroup(group);
         this.setVariants(game.getVariants());
+        updateText();
     }    
     
     @FXML
     private void actionMakeStap(){
+        if(!game.isStarted())
+            return;
         if (this.buttonVar1.isSelected()) {
             game.makeStap(this.buttonVar1.getText());
             this.setVariants(game.getVariants());
@@ -78,11 +81,15 @@ public class MainFormController implements Initializable {
             game.makeStap(this.buttonVar4.getText());
             this.setVariants(game.getVariants());
         }
+        updateText();
     }
     
     @FXML
     private void actionPlay(){
+        if(!game.isStarted())
+            return;
         game.playSound();
+        updateText();
     }
     
     private void updateText(){

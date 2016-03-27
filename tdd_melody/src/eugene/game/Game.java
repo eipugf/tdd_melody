@@ -13,12 +13,13 @@ import java.util.Random;
  * @author Eugene
  */
 public class Game {
+
     private boolean flagStarted;
     private Random random = new Random();
     private ArrayList<File> soundList;
     private Thread soundThread;
-    private int[] payersCounts = new int[]{0,0,0};
-    private String nameActiveMelody ;
+    private int[] payersCounts = new int[]{0, 0, 0};
+    private String nameActiveMelody;
     private int activeIndex = 0;
     private int countStaps = 0;
     private int activePlayer = 0;
@@ -58,28 +59,29 @@ public class Game {
 
         }
     }
-    
-    public int getMaxPlayer(){
+
+    public int getMaxPlayer() {
         int res = 0;
-        for(int index=0; index < this.payersCounts.length; index++){
-            if(this.payersCounts[index] > this.payersCounts[res])
+        for (int index = 0; index < this.payersCounts.length; index++) {
+            if (this.payersCounts[index] > this.payersCounts[res]) {
                 res = index;
+            }
         }
-        return res+1;
+        return res + 1;
     }
-    
-    public boolean makeStap(String name){
+
+    public boolean makeStap(String name) {
         this.countStaps++;
         boolean res = false;
-        if(name.equalsIgnoreCase(this.nameActiveMelody)){
+        if (name.equalsIgnoreCase(this.nameActiveMelody.replace(".wav",""))) {
             this.payersCounts[activePlayer]++;
             res = true;
         }
-        this.activePlayer = (this.activePlayer+1)%3;
+        this.activePlayer = (this.activePlayer + 1) % 3;
         return res;
     }
-    
-    public String[] getVariants(){
+
+    public String[] getVariants() {
         this.activeIndex = random.nextInt(this.soundList.size());
         this.nameActiveMelody = this.soundList.get(activeIndex).getName();
         String[] variants = new String[4];
@@ -89,13 +91,15 @@ public class Game {
         ArrayList variantsList = new ArrayList();
         variantsList.add(idxRight);
         int idxForVar = 0;
-        while(true){
-            if(count==3)
+        while (true) {
+            if (count == 3) {
                 break;
+            }
             int idx = random.nextInt(this.soundList.size());
-            if(!variantsList.contains(idx)){
-                if(idxForVar==idxRight)
+            if (!variantsList.contains(idx)) {
+                if (idxForVar == idxRight) {
                     idxForVar++;
+                }
                 variants[idxForVar] = this.soundList.get(idx).getName();
                 count++;
                 idxForVar++;
@@ -103,34 +107,43 @@ public class Game {
         }
         return variants;
     }
-    
-    public String getResult(){
+
+    public String getResult() {
         int res = 0;
-        for(int index=0; index < this.payersCounts.length; index++){
-            if(this.payersCounts[index] > this.payersCounts[res])
+        for (int index = 0; index < this.payersCounts.length; index++) {
+            if (this.payersCounts[index] > this.payersCounts[res]) {
                 res = index;
-            else if(this.payersCounts[index] > this.payersCounts[res] && countStaps==9){
+            } else if (this.payersCounts[index] > this.payersCounts[res] && countStaps == 9) {
                 return "Победителя нет. Игра закончена";
-            } else if(this.payersCounts[index] > this.payersCounts[res]){
+            } else if (this.payersCounts[index] > this.payersCounts[res]) {
                 return "Победителя нет.";
             }
         }
-        return String.valueOf(res+1);
+        return "Побеждает "+String.valueOf(res + 1);
     }
-    
-    public int getActivePalyer(){
+
+    public int getActivePalyer() {
         return this.activePlayer;
     }
 
     public String getStringResult() {
         StringBuilder res = new StringBuilder();
-        if(this.isStarted())
-            res.append("Игра активна");
-        else res.append("Игра не активна\n");
-        res.append("Игрок 1 угадал - ").append(this.payersCounts[0]);
+        if (this.countStaps != 9) {
+            if (this.isStarted()) {
+                res.append("Игра активна");
+            } else {
+                res.append("Игра не активна\n");
+            }
+            res.append("\nАктивен игрок - ").append(this.activePlayer + 1);
+        } else {
+            this.getResult();
+            res.append("Игра закончена");
+            res.append('\n').append(this.getResult());
+            return res.toString();
+        }
+        res.append("\n\nИгрок 1 угадал - ").append(this.payersCounts[0]);
         res.append("\nИгрок 2 угадал - ").append(this.payersCounts[1]);
         res.append("\nИгрок 3 угадал - ").append(this.payersCounts[2]);
-        res.append("Активен игрок - ").append(this.activePlayer+1);
         return res.toString();
     }
 }
