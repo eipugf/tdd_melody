@@ -1,6 +1,9 @@
 package tdd_melody;
 
+import java.io.IOException;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -12,15 +15,11 @@ import javafx.stage.Stage;
 public class MainStart extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
-
-        StackPane root = new StackPane();
-
-        Scene scene = new Scene(root, 300, 250);
-
-        primaryStage.setTitle("Угадай мелодию!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public void start(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("eugeme/game/gui/MainForm.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
