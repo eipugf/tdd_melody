@@ -121,4 +121,16 @@ public class Game {
     public int getActivePalyer(){
         return this.activePlayer;
     }
+
+    public String getStringResult() {
+        StringBuilder res = new StringBuilder();
+        if(this.isStarted())
+            res.append("Игра активна");
+        else res.append("Игра не активна\n");
+        res.append("Игрок 1 угадал - ").append(this.payersCounts[0]);
+        res.append("\nИгрок 2 угадал - ").append(this.payersCounts[1]);
+        res.append("\nИгрок 3 угадал - ").append(this.payersCounts[2]);
+        res.append("Активен игрок - ").append(this.activePlayer+1);
+        return res.toString();
+    }
 }
