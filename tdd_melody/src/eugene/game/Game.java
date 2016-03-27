@@ -15,6 +15,7 @@ public class Game {
     private Random random = new Random();
     private ArrayList<File> soundList;
     private Thread soundThread;
+    private int[] payersCounts = new int[]{0,0,0};
 
     public Game() {
 
@@ -50,6 +51,15 @@ public class Game {
         } catch (Exception ex) {
 
         }
+    }
+    
+    public int getMaxPlayer(){
+        int res = 0;
+        for(int index=0; index < this.payersCounts.length; index++){
+            if(this.payersCounts[index] > this.payersCounts[res])
+                res = index;
+        }
+        return res+1;
     }
     
     public int getActivePalyer(){
