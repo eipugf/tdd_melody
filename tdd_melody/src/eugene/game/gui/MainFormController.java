@@ -5,7 +5,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
@@ -81,6 +84,7 @@ public class MainFormController implements Initializable {
             game.makeStap(this.buttonVar4.getText());
             this.setVariants(game.getVariants());
         }
+        this.game.soundStop();
         updateText();
     }
     
@@ -94,5 +98,19 @@ public class MainFormController implements Initializable {
     
     private void updateText(){
         this.text.setText(game.getStringResult());
+    }
+    
+    @FXML
+    private Button buttonStart;
+    
+    @FXML
+    private void startGame(){
+        buttonStart.setVisible(false);
+        this.game.start();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,"Игра начата",ButtonType.OK);
+        alert.setTitle("Игра начата");
+        alert.setContentText("Игра начата");
+        alert.show();
+        this.updateText();
     }
 }

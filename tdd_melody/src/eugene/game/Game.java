@@ -39,6 +39,13 @@ public class Game {
     public boolean isStarted() {
         return this.flagStarted;
     }
+    
+    public void soundStop(){
+        if(this.soundThread!=null && !this.soundThread.isInterrupted())
+        {
+            soundThread.interrupt();
+        }
+    }
 
     public void loadSoudStore(String path) {
         File storeDir = new File(path);
@@ -52,6 +59,10 @@ public class Game {
 
     public void playSound() {
         try {
+            if(this.soundThread!=null){
+                this.soundThread.interrupt();
+                this.soundThread = null;
+            }
             File audio = this.soundList.get(this.activeIndex);
             this.soundThread = new SoudThread(audio);
             this.soundThread.start();
@@ -89,7 +100,7 @@ public class Game {
         variants[idxRight] = this.nameActiveMelody;
         int count = 0;
         ArrayList variantsList = new ArrayList();
-        variantsList.add(idxRight);
+        variantsList.add(this.activeIndex);
         int idxForVar = 0;
         while (true) {
             if (count == 3) {

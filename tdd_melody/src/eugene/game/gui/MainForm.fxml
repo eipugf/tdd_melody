@@ -15,6 +15,6 @@
       <RadioButton fx:id="buttonVar4" layoutX="24.0" layoutY="91.0" mnemonicParsing="false" />
       <TextArea fx:id="text" layoutX="274.0" layoutY="18.0" prefHeight="132.0" prefWidth="259.0" />
       <Button fx:id="playButton" layoutX="24.0" layoutY="163.0" mnemonicParsing="false" onAction="#actionPlay" prefHeight="25.0" prefWidth="137.0" text="Играть" />
-      <Button layoutX="220.0" layoutY="163.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Начать игру" />
+      <Button fx:id="buttonStart" layoutX="220.0" layoutY="163.0" mnemonicParsing="false" onAction="#startGame" prefHeight="25.0" prefWidth="125.0" text="Начать игру" />
    </children>
 </AnchorPane>
