@@ -40,10 +40,19 @@ public class TestGame {
         Thread.sleep(60*1000);
     }
     
-    @Test
+    @Test(enabled = false)
     public void testGetActivePlayer(){
         Game game = new Game();
         int numPlayer = game.getActivePalyer();
         assertEquals(numPlayer,1);
     }
+    
+    @Test
+    public void testMakeStap(){
+        Game game = new Game();
+        boolean res = game.makeStap(1,1);
+        assertEquals(res,true);
+    }
+    
+    
 }
