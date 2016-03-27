@@ -1,11 +1,7 @@
 package eugene.game;
 
-import javafx.stage.Stage;
 import static org.testng.Assert.*;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
@@ -36,9 +32,6 @@ public class TestGame {
         assertEquals(game.isStarted(), false);
     }
     
-    /**
-     * Не должно быть исключения, файл звуковой не найден
-     */
     @Test
     public void testPlaySound(){
         Game game = new Game();
