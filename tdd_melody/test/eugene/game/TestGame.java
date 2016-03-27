@@ -29,4 +29,11 @@ public class TestGame {
         assertEquals(game.isStarted(), true);
     }
     
+    @Test
+    public void testStopGame(){
+        Game game = new Game();
+        game.stop();
+        assertEquals(game.isStarted(), false);
+    }
+    
 }
