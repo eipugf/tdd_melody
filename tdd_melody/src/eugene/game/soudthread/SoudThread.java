@@ -27,9 +27,11 @@ public class SoudThread extends Thread {
             clip.open(ais);
             clip.setFramePosition(0);
             clip.start();
-            Thread.sleep(this.LENGTH_PLAYING);
+            Thread.sleep(this.LENGTH_PLAYING*1000);
+            clip.stop();
+            clip.close();
         } catch (Exception ex) {
-
+            System.out.println(ex);
         }
     }
 }

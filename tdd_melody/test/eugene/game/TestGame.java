@@ -33,8 +33,10 @@ public class TestGame {
     }
     
     @Test
-    public void testPlaySound(){
+    public void testPlaySound() throws InterruptedException{
         Game game = new Game();
+        game.loadSoudStore("soud-store");
         game.playSound();
+        Thread.sleep(60*1000);
     }
 }

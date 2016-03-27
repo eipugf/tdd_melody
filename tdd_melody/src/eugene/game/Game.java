@@ -2,14 +2,8 @@ package eugene.game;
 
 import eugene.game.soudthread.SoudThread;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * класс игры
@@ -17,9 +11,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author Eugene
  */
 public class Game {
-
     private boolean flagStarted;
-    private int coutFiles = 10;
     private Random random = new Random();
     private ArrayList<File> soundList;
     private Thread soundThread;
@@ -40,10 +32,21 @@ public class Game {
         return this.flagStarted;
     }
 
+    public void loadSoudStore(String path) {
+        File storeDir = new File(path);
+        this.soundList = new ArrayList<>();
+        for (File item : storeDir.listFiles()) {
+            if (!".".equals(item.getName()) && !"..".equals(item.getName())) {
+                this.soundList.add(item);
+            }
+        }
+    }
+
     public void playSound() {
         try {
-            File audio = this.soundList.get(random.nextInt(coutFiles));
+            File audio = this.soundList.get(random.nextInt(this.soundList.size()));
             this.soundThread = new SoudThread(audio);
+            this.soundThread.start();
         } catch (Exception ex) {
 
         }
