@@ -16,6 +16,7 @@ public class Game {
     private ArrayList<File> soundList;
     private Thread soundThread;
     private int[] payersCounts = new int[]{0,0,0};
+    private String nameActiveMelody = "Увертюра";
 
     public Game() {
 
@@ -60,6 +61,14 @@ public class Game {
                 res = index;
         }
         return res+1;
+    }
+    
+    public boolean makeStap(int numGamer,String name){
+        if(name.equalsIgnoreCase(this.nameActiveMelody)){
+            this.payersCounts[numGamer]++;
+            return true;
+        }
+        return false;
     }
     
     public int getActivePalyer(){

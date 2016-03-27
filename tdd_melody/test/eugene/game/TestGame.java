@@ -50,7 +50,7 @@ public class TestGame {
     @Test
     public void testMakeStap(){
         Game game = new Game();
-        boolean res = game.makeStap(1,1);
+        boolean res = game.makeStap(1,"Увертюра");
         assertEquals(res,true);
     }
     
