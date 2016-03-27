@@ -3,6 +3,8 @@ package eugene.game;
 import eugene.game.soudthread.SoudThread;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -17,6 +19,8 @@ public class Game {
     private Thread soundThread;
     private int[] payersCounts = new int[]{0,0,0};
     private String nameActiveMelody = "Увертюра";
+    private int countStaps = 0;
+    private int activePlayer = 0;
 
     public Game() {
 
@@ -63,12 +67,52 @@ public class Game {
         return res+1;
     }
     
-    public boolean makeStap(int numGamer,String name){
+    public boolean makeStap(String name){
+        this.countStaps++;
+        boolean res = false;
         if(name.equalsIgnoreCase(this.nameActiveMelody)){
-            this.payersCounts[numGamer]++;
-            return true;
+            this.payersCounts[activePlayer]++;
+            res = true;
         }
-        return false;
+        this.activePlayer = (this.activePlayer+1)%3;
+        return res;
+    }
+    
+    public String[] getVariants(){
+        String[] variants = new String[4];
+        int idxRight = random.nextInt(4);
+        variants[idxRight] = this.nameActiveMelody;
+        int count = 0;
+        ArrayList variantsList = new ArrayList();
+        variantsList.add(idxRight);
+        int idxForVar = 0;
+        while(true){
+            if(count==3)
+                break;
+            int idx = random.nextInt(this.soundList.size());
+            if(!variantsList.contains(idx)){
+                if(idxForVar==idxRight)
+                    idxForVar++;
+                variants[idxForVar] = this.soundList.get(idx).getName();
+                count++;
+                idxForVar++;
+            }
+        }
+        return variants;
+    }
+    
+    public String getResult(){
+        int res = 0;
+        for(int index=0; index < this.payersCounts.length; index++){
+            if(this.payersCounts[index] > this.payersCounts[res])
+                res = index;
+            else if(this.payersCounts[index] > this.payersCounts[res] && countStaps==9){
+                return "Победителя нет. Игра закончена";
+            } else if(this.payersCounts[index] > this.payersCounts[res]){
+                return "Победителя нет.";
+            }
+        }
+        return String.valueOf(res+1);
     }
     
     public int getActivePalyer(){
