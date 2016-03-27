@@ -32,11 +32,18 @@ public class TestGame {
         assertEquals(game.isStarted(), false);
     }
     
-    @Test
+    @Test(enabled = false)
     public void testPlaySound() throws InterruptedException{
         Game game = new Game();
         game.loadSoudStore("soud-store");
         game.playSound();
         Thread.sleep(60*1000);
+    }
+    
+    @Test
+    public void testGetActivePlayer(){
+        Game game = new Game();
+        int numPlayer = game.getActivePalyer();
+        assertEquals(numPlayer,1);
     }
 }
