@@ -13,33 +13,39 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * класс игры
+ *
  * @author Eugene
  */
 public class Game {
+
     private boolean flagStarted;
     private int coutFiles = 10;
     private Random random = new Random();
     private ArrayList<File> soundList;
     private Thread soundThread;
-    
-    public Game(){
-    
+
+    public Game() {
+
     }
-    
-    public void start(){
+
+    public void start() {
         this.flagStarted = true;
     }
-    
-    public void stop(){
+
+    public void stop() {
         this.flagStarted = false;
     }
-    
-    public boolean isStarted(){
+
+    public boolean isStarted() {
         return this.flagStarted;
     }
-    
-    public void playSound(){
-        File audio = this.soundList.get(random.nextInt(coutFiles));
-        this.soundThread = new SoudThread(audio);
+
+    public void playSound() {
+        try {
+            File audio = this.soundList.get(random.nextInt(coutFiles));
+            this.soundThread = new SoudThread(audio);
+        } catch (Exception ex) {
+
+        }
     }
 }
