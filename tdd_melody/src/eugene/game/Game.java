@@ -52,5 +52,7 @@ public class Game {
         }
     }
     
-    
+    public int getActivePalyer(){
+        return 1;
+    }
 }
