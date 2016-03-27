@@ -22,18 +22,26 @@ public class TestGame {
     
     }
     
-    @Test
+    @Test(enabled = false)
     public void testStarGame(){
         Game game = new Game();
         game.start();
         assertEquals(game.isStarted(), true);
     }
     
-    @Test
+    @Test(enabled = false)
     public void testStopGame(){
         Game game = new Game();
         game.stop();
         assertEquals(game.isStarted(), false);
     }
     
+    /**
+     * Не должно быть исключения, файл звуковой не найден
+     */
+    @Test
+    public void testPlaySound(){
+        Game game = new Game();
+        game.playSound();
+    }
 }
