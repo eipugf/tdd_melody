@@ -32,37 +32,12 @@ public class MainFormController implements Initializable {
     private TextArea text;
     
     @FXML
-    private Button playButton;
+    Button playButton;
     
     @FXML
-    private Button nextStap;
-    
-    
+    Button nextStap;
     
     private Game game = new Game();
-    
-    
-    @FXML
-    private void actionMakeStap(){
-        if (this.buttonVar1.isSelected()) {
-            game.makeStap(this.buttonVar1.getText());
-            this.setVariants(game.getVariants());
-        } else if (this.buttonVar2.isSelected()) {
-            game.makeStap(this.buttonVar2.getText());
-            this.setVariants(game.getVariants());
-        } else if (this.buttonVar3.isSelected()) {
-            game.makeStap(this.buttonVar3.getText());
-            this.setVariants(game.getVariants());
-        } else if (this.buttonVar4.isSelected()) {
-            game.makeStap(this.buttonVar4.getText());
-            this.setVariants(game.getVariants());
-        }
-    }
-    
-    @FXML
-    private void actionPlay(){
-        game.playSound();
-    }
     
     private void setVariants(String[] variants){
         this.buttonVar1.setText(variants[0]);
@@ -87,5 +62,29 @@ public class MainFormController implements Initializable {
         this.buttonVar4.setToggleGroup(group);
         this.setVariants(game.getVariants());
     }    
+    
+    @FXML
+    private void actionMakeStap(){
+        if (this.buttonVar1.isSelected()) {
+            game.makeStap(this.buttonVar1.getText());
+            this.setVariants(game.getVariants());
+        } else if (this.buttonVar2.isSelected()) {
+            game.makeStap(this.buttonVar2.getText());
+            this.setVariants(game.getVariants());
+        } else if (this.buttonVar3.isSelected()) {
+            game.makeStap(this.buttonVar3.getText());
+            this.setVariants(game.getVariants());
+        } else if (this.buttonVar4.isSelected()) {
+            game.makeStap(this.buttonVar4.getText());
+            this.setVariants(game.getVariants());
+        }
+    }
+    
+    @FXML
+    private void actionPlay(){
+        game.playSound();
+    }
+    
+    
     
 }

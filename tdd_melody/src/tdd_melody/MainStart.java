@@ -16,7 +16,7 @@ public class MainStart extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("eugeme/game/gui/MainForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/eugene/game/gui/MainForm.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

@@ -119,6 +119,6 @@ public class Game {
     }
     
     public int getActivePalyer(){
-        return 1;
+        return this.activePlayer;
     }
 }
