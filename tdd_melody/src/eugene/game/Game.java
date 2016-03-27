@@ -12,7 +12,7 @@ public class Game {
     }
     
     public void start(){
-    
+        this.flagStarted = true;
     }
     
     public void stop(){
