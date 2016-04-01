@@ -146,8 +146,9 @@ public class Game {
                 res.append("Игра не активна\n");
             }
             res.append("\nАктивен игрок - ").append(this.activePlayer + 1);
-        } else {
-            this.getResult();
+        } else if(countStaps==9) {
+            this.stop();
+            this.soundStop();
             res.append("Игра закончена");
             res.append('\n').append(this.getResult());
             return res.toString();
@@ -157,4 +158,10 @@ public class Game {
         res.append("\nИгрок 3 угадал - ").append(this.payersCounts[2]);
         return res.toString();
     }
+
+    int getActivePlayer() {
+        return this.activePlayer;
+    }
+    
+    
 }
