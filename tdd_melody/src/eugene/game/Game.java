@@ -125,7 +125,7 @@ public class Game {
             if (this.payersCounts[index] > this.payersCounts[res]) {
                 res = index;
             } else if (this.payersCounts[index] > this.payersCounts[res] && countStaps == 9) {
-                return "Победителя нет. Игра закончена";
+                return "Победителя нет - Игра закончена";
             } else if (this.payersCounts[index] > this.payersCounts[res]) {
                 return "Победителя нет.";
             }

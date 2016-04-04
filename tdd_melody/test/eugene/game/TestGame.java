@@ -97,5 +97,13 @@ public class TestGame {
         assertEquals(result.indexOf("Игра закончена")>=0,true);
     }
     
-    
+    @Test
+    public void testGetResultExitGame(){
+        Game game =  new Game();
+        game.loadSoudStore("soud-store");
+        game.start();
+        game.makeStap("1");
+        String result = game.getResult();
+        assertEquals(result.indexOf("Победителя нет.")>=0,true);
+    }
 }
