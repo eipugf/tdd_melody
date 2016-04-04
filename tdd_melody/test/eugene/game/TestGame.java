@@ -84,14 +84,23 @@ public class TestGame {
         Game game =  new Game();
         game.loadSoudStore("soud-store");
         game.start();
+        game.getVariants();
         game.makeStap("1");
+        game.getVariants();
         game.makeStap("1");
+        game.getVariants();
         game.makeStap("1");
+        game.getVariants();
         game.makeStap("1");
+        game.getVariants();
         game.makeStap("1");
+        game.getVariants();
         game.makeStap("1");
+        game.getVariants();
         game.makeStap("1");
+        game.getVariants();
         game.makeStap("1");
+        game.getVariants(); 
         game.makeStap("1");
         String result = game.getStringResult();
         assertEquals(result.indexOf("Игра закончена")>=0,true);
@@ -102,8 +111,9 @@ public class TestGame {
         Game game =  new Game();
         game.loadSoudStore("soud-store");
         game.start();
+        game.getVariants();
         game.makeStap("1");
         String result = game.getResult();
-        assertEquals(result.indexOf("Победителя нет.")>=0,true);
+        assertEquals(result.indexOf("Победает 1")>=0,true);
     }
 }
