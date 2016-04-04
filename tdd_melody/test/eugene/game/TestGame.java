@@ -78,4 +78,24 @@ public class TestGame {
         String result = game.getStringResult();
         assertEquals(result.indexOf("Игра не активна\n")>=0,true);
     }
+    
+    @Test
+    public void testStringResultExitGame(){
+        Game game =  new Game();
+        game.loadSoudStore("soud-store");
+        game.start();
+        game.makeStap("1");
+        game.makeStap("1");
+        game.makeStap("1");
+        game.makeStap("1");
+        game.makeStap("1");
+        game.makeStap("1");
+        game.makeStap("1");
+        game.makeStap("1");
+        game.makeStap("1");
+        String result = game.getStringResult();
+        assertEquals(result.indexOf("Игра закончена")>=0,true);
+    }
+    
+    
 }
