@@ -1,7 +1,6 @@
 package eugene.game;
 
 import static org.testng.Assert.*;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class TestGame {
@@ -42,7 +41,7 @@ public class TestGame {
         assertEquals(res, true);
     }
     
-    @Test
+    @Test(enabled = false)
     public void testActivePlayer(){
         Game game =  new Game();
         game.loadSoudStore("soud-store");
@@ -50,5 +49,13 @@ public class TestGame {
         game.makeStap("sjdfh");
         int res = game.getActivePlayer();
         assertEquals(1,res);
+    }
+    
+    @Test
+    public void testGetVariants(){
+        Game game =  new Game();
+        game.loadSoudStore("soud-store");
+        String[] variants = game.getVariants();
+        assertEquals(variants.length>0,true);
     }
 }
