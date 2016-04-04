@@ -58,4 +58,24 @@ public class TestGame {
         String[] variants = game.getVariants();
         assertEquals(variants.length>0,true);
     }
+    
+    @Test
+    public void testStringResult(){
+        Game game =  new Game();
+        game.loadSoudStore("soud-store");
+        game.getVariants();
+        game.start();
+        game.makeStap("sjdfh");
+        String result = game.getStringResult();
+        assertEquals(result.indexOf("Игра активна")>=0,true);
+    }
+    
+    @Test
+    public void testStringResultNotActive(){
+        Game game =  new Game();
+        game.loadSoudStore("soud-store");
+        game.stop();
+        String result = game.getStringResult();
+        assertEquals(result.indexOf("Игра не активна\n")>=0,true);
+    }
 }
